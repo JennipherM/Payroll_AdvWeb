@@ -7,18 +7,20 @@ echo "<hr>\n";
 // ===== EMPLOYEE DATA (Variables) =====
 $employeeName = "Sarah Johnson";
 $employeeId = "2005";             
-$hoursWorked = 47.5;               
-$hourlyRate = 18.50;               
-$isFullTime = true;                
-$yearsOfService = 7;               
+$hoursWorked = 23.95;               
+$hourlyRate = 22.65;               
+$isFullTime = false;                
+$yearsOfService = 2;               
 
 
 // ===== PAYROLL CALCULATIONS =====
 
 // Calculate regular and overtime hours
-if ($hoursWorked <= 40){
+if ($hoursWorked <= 40 || $isFullTime == false){
     $regularHours = $hoursWorked;
+    $overtimeHours = 0;
 }
+
 else{
     $regularHours = 40;
     $overtimeHours = $hoursWorked - 40;
@@ -32,6 +34,8 @@ if($isFullTime){
 }
 else{
     $regularPay = $hoursWorked * $hourlyRate;
+    $overtimePay = 0;
+    $grossPay = $regularPay;
 }
 
 // Calculate tax based on gross pay brackets
@@ -51,7 +55,22 @@ else{
     $netPay = $grossPay - $taxAmount;
 }
 // ===== EMPLOYEE STATUS DETERMINATION =====
-
+if ($isFullTime){
+    if($yearsOfService >=5){
+        $employeeStatus = "Senior Full-time Employee";
+    }
+    else{
+        $employeeStatus = "Full-time Employee";
+    }
+}
+else{
+    if($yearsOfService >= 3){
+        $employeeStatus = "Experienced Part-time Employee";
+    }
+    else{
+        $employeeStatus = "Part-time Employee";
+    }
+}
 
 // ===== OUTPUT RESULTS =====
 
